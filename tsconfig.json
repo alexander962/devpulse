@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    // то, куда производится сборка
+    "outDir": "./dist/",
+    // подсвечивает все места, где не указан тип
+    "noImplicitAny": true,
+    "module": "ESNext",
+    // указываем версию, в которую код будет компилироваться
+    "target": "es5",
+    "jsx": "react",
+    // позволяет обрабатывать не только ts файлы, но и js
+    "allowJs": true,
+    // определяет то, какие импорты будут
+    "moduleResolution": "node",
+    // позволяет работать с пакетами, которые используют
+    // common js как с обычными пакетами с помощью import
+    "esModuleInterop" : true,
+    // помогает писать импорты в привычном стиле, даже если у пакета нет дефолтного импорта
+    // import React from 'react'
+    "allowSyntheticDefaultImports" : true,
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  }
+}
