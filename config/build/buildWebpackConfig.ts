@@ -3,9 +3,10 @@ import { BuildOptions } from "./types/config";
 import { buildPlugins } from "./buildPlugins";
 import { buildLoaders } from "./buildLoaders";
 import { buildResolvers } from "./buildResolvers";
+import {buildDevServer} from "./buildDevServer";
 
 export function buildWebpackConfig(options: BuildOptions): webpack.Configuration {
-  const {paths, mode} = options;
+  const {paths, mode, isDev} = options;
   return {
     mode: mode,
     // стартовая точка нашего приложения, dirname - папка, в которой мы находимся в данный момент
@@ -24,6 +25,8 @@ export function buildWebpackConfig(options: BuildOptions): webpack.Configuration
       // js(png, jpeg, gif, svg, css, scss, ts, ...)
       rules: buildLoaders(),
     },
-    resolve: buildResolvers()
+    resolve: buildResolvers(),
+    devtool: isDev ? 'inline-source-map' : undefined,
+    devServer: isDev ? buildDevServer(options) : undefined,
   }
 }
